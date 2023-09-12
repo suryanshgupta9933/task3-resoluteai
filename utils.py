@@ -1,3 +1,4 @@
+# Importing Dependencies
 import cv2
 import torch
 import numpy as np
@@ -6,12 +7,30 @@ from yolov5.models.experimental import attempt_load
 from yolov5.utils.general import non_max_suppression
 from yolov5.utils.torch_utils import select_device
 
+# Device Configuration
 device = select_device('0' if torch.cuda.is_available() else 'cpu')
 
+# Loading yolov5 model
 def load_model(model_path="best.pt"):
+    """
+    Load the model from the given path
+    Args:
+        model_path (str): Path to the model
+    Returns:
+        model: Loaded model
+    """
     return attempt_load(model_path, device=device)
 
+# Preprocessing Image
 def preprocess_image(uploaded_file):
+    """
+    Preprocess the image for inference
+    Args:
+        uploaded_file (str): Path to the image
+    Returns:
+        image: PIL Image
+        img: Preprocessed image tensor
+    """
     image = Image.open(uploaded_file)
     image = image.resize((640, 640))
     img = np.array(image)
@@ -22,16 +41,36 @@ def preprocess_image(uploaded_file):
     img = img.unsqueeze(0)
     return image, img
 
+# Getting Predictions
 def get_predictions(model, img, conf_thres, iou_thres):
+    """
+    Get predictions from the model
+    Args:
+        model: Loaded model
+        img: Preprocessed image tensor
+        conf_thres (float): Confidence threshold
+        iou_thres (float): IOU threshold
+    Returns:
+        pred: Predictions
+    """
     pred = model(img)[0]
     pred = non_max_suppression(pred, conf_thres=conf_thres, iou_thres=iou_thres)
     pred = [x.detach().cpu().numpy() for x in pred]
     pred = [x.astype(int) for x in pred]
     return pred
 
+# Drawing Bounding Boxes
 def draw_bounding_boxes(image, pred):
+    """
+    Draw bounding boxes on the image
+    Args:
+        image: PIL Image
+        pred: Predictions
+    Returns:
+        image: Resultant PIL Image
+        len(boxes): Number of detected objects
+    """
     boxes = []
-    
     for det in pred:
         if det is not None and len(det):
             det[:, :4] = det[:, :4] / 640 * image.size[0]
