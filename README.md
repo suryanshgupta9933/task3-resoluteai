@@ -5,7 +5,7 @@ This repository contains the code for the task 3 of the ResoluteAI screening pro
 - [Problem Statement](#problem-statement)
 - [Approach](#approach)
 - [Model Weights](#model-weights)
-- [Installation and Usage](#installation-and-usage)
+- [Installation](#installation)
 
 ## Problem Statement
 The problem statement is to detect and count the number of objects in an image. The images consist of dense environment like inside of a freezer in a super market.
@@ -20,7 +20,7 @@ The weights for the model are not added in the repository due to their large siz
 
 > Note: You need to add the weights in the root directory of the repository.
 
-## Installation and Usage
+## Installation
 1. Clone the repository
 ```bash
 git clone https://github.com/suryanshgupta9933/task3-resoluteai.git
@@ -28,10 +28,6 @@ git clone https://github.com/suryanshgupta9933/task3-resoluteai.git
 2. Install the requirements
 ```bash
 pip install -r requirements.txt
-```
-3. Run the script
-```bash
-streamlit run app.py
 ```
 
 ## Model Performance
@@ -42,9 +38,22 @@ Index | Sample Data             |  Resultant Image
 1.|![freezer_1](sample_images/freezer_image%20(1).jpg)|![result_1](assets/result_1.jpg)
 2.|![freezer_2](sample_images/freezer_image%20(2).jpg)|![result_2](assets/result_2.jpg)
 
+## Streamlit App
+The model is deployed using Streamlit. The user can upload the image and the model will detect the objects in the image and count them. The app can be run using the following command:
+```bash
+streamlit run app.py
+```
+The screenshot of the app is shown below:
+![streamlit_app](assets/streamlit_app.jpg)
+
+
 ## Results
 The default settings for confidence threshold and IoU threshold are 0.25 and 0.1 respectively. This can be changed in the sidebar of the web app.
 
 > Note: The increasing the confidence threshold will result in lesser number of detections and increasing the IoU threshold will result in more overlapping bounding boxes leading to incorrect counting of objects.
 
 The results for the sample data is shown below:
+1. Freezer Image 1
+![count_1](assets/count_1.jpg)
+2. Freezer Image 2
+![count_2](assets/count_2.jpg)
