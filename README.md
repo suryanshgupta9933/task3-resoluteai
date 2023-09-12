@@ -9,6 +9,7 @@ This repository contains the code for the task 3 of the ResoluteAI screening pro
 - [Model Performance](#model-performance)
 - [Streamlit App](#streamlit-app)
 - [Results](#results)
+- [Limitations](#limitations)
 
 ## Problem Statement
 The problem statement is to detect and count the number of objects in an image. The images consist of dense environment like inside of a freezer in a super market.
