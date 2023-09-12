@@ -6,6 +6,9 @@ This repository contains the code for the task 3 of the ResoluteAI screening pro
 - [Approach](#approach)
 - [Model Weights](#model-weights)
 - [Installation](#installation)
+- [Model Performance](#model-performance)
+- [Streamlit App](#streamlit-app)
+- [Results](#results)
 
 ## Problem Statement
 The problem statement is to detect and count the number of objects in an image. The images consist of dense environment like inside of a freezer in a super market.
@@ -57,3 +60,7 @@ The results for the sample data is shown below:
 ![count_1](assets/count_1.jpg)
 2. Freezer Image 2
 ![count_2](assets/count_2.jpg)
+
+## Limitations
+- The model is trained on SKU-110K dataset which consists of images of products in a super market. The model will not perform well on images of other environments.
+- The confidence threshold and IoU threshold are set manually. This can be automated by using a validation set and selecting the best values for the thresholds.
